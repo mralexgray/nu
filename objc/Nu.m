@@ -564,11 +564,6 @@ id _nulist(id firstObject, ...)
 #pragma mark - NuBlock.m
 
 @interface NuBlock ()
-{
-	NuCell *parameters;
-    NuCell *body;
-	NSMutableDictionary *context;
-}
 @end
 
 @implementation NuBlock
@@ -1678,7 +1673,7 @@ static id get_nu_value_from_objc_value(void *objc_value, const char *typeString)
     
 }
 
-static static void raise_argc_exception(SEL s, NSUInteger count, NSUInteger given)
+static void raise_argc_exception(SEL s, NSUInteger count, NSUInteger given)
 {
     if (given != count) {
         [NSException raise:@"NuIncorrectNumberOfArguments"
@@ -2013,11 +2008,6 @@ static id add_method_to_class(Class c, NSString *methodName, NSString *signature
 }
 
 @interface NuBridgedFunction ()
-{
-    char *name;
-    char *signature;
-    void *function;
-}
 @end
 
 @implementation NuBridgedFunction
@@ -2489,10 +2479,6 @@ static char **generate_block_userdata(NuBlock *nuBlock, const char *signature);
 static void *construct_block_handler(NuBlock *block, const char *signature);
 
 @interface NuBridgedBlock ()
-{
-	NuBlock *nuBlock;
-	id cBlock;
-}
 @end
 
 @implementation NuBridgedBlock
@@ -2853,12 +2839,6 @@ static NSString *getTypeStringFromNode(id node)
 #pragma mark - NuCell.m
 
 @interface NuCell ()
-{
-    id car;
-    id cdr;
-    int file;
-    int line;
-}
 @end
 
 @implementation NuCell
@@ -3348,9 +3328,6 @@ static NSString *getTypeStringFromNode(id node)
 @end
 
 @interface NuCellWithComments ()
-{
-    id comments;
-}
 @end
 
 @implementation NuCellWithComments
@@ -3378,10 +3355,6 @@ static NSString *getTypeStringFromNode(id node)
 // (set x (((Convert classMethods) select: (do (m) (eq (m name) "passRect:"))) objectAtIndex:0))
 
 @interface NuClass ()
-{
-    Class c;
-    BOOL isRegistered;
-}
 @end
 
 @implementation NuClass
@@ -3903,9 +3876,6 @@ static void Nu_defaultExceptionHandler(NSException* e)
 static BOOL NuException_verboseExceptionReporting = NO;
 
 @interface NuException ()
-{
-    NSMutableArray* stackTrace;
-}
 @end
 
 @implementation NuException
@@ -4009,11 +3979,6 @@ static BOOL NuException_verboseExceptionReporting = NO;
 @end
 
 @interface NuTraceInfo ()
-{
-    NSString*   filename;
-    int         lineNumber;
-    NSString*   function;
-}
 @end
 
 @implementation NuTraceInfo
@@ -5287,12 +5252,6 @@ static NSMutableDictionary *handlerWarehouse = nil;
 
 #pragma mark - NuMacro_0.m
 @interface NuMacro_0 ()
-{
-@protected
-    NSString *name;
-    NuCell *body;
-	NSMutableSet *gensyms;
-}
 @end
 
 @implementation NuMacro_0
@@ -5525,9 +5484,6 @@ static NSMutableDictionary *handlerWarehouse = nil;
 #endif
 
 @interface NuMacro_1 ()
-{
-	NuCell *parameters;
-}
 @end
 
 @implementation NuMacro_1
@@ -5909,9 +5865,6 @@ static NSMutableDictionary *handlerWarehouse = nil;
 
 #pragma mark - NuMethod.m
 @interface NuMethod ()
-{
-    Method m;
-}
 @end
 
 @implementation NuMethod
@@ -9228,36 +9181,8 @@ static id regexWithString(NSString *string)
     }
 }
 
-#define NU_MAX_PARSER_MACRO_DEPTH 1000
 
 @interface NuParser ()
-{
-    int state;
-    int start;
-    int depth;
-    int parens;
-    int column;
-    
-	NSMutableArray* readerMacroStack;
-	int readerMacroDepth[NU_MAX_PARSER_MACRO_DEPTH];
-    
-    int filenum;
-    int linenum;
-    int parseEscapes;
-    
-    NuCell *root;
-    NuCell *current;
-    bool addToCar;
-    NSMutableString *hereString;
-    bool hereStringOpened;
-    NuStack *stack;
-    NuStack *opens;
-    NuSymbolTable *symbolTable;
-    NSMutableDictionary *context;
-    NSMutableString *partial;
-    NSMutableString *comments;
-    NSString *pattern;                            // used for herestrings
-}
 @end
 
 @implementation NuParser
@@ -10197,11 +10122,6 @@ static NSUInteger nu_parse_escape_sequences(NSString *string, NSUInteger i, NSUI
 #pragma mark - NuPointer.m
 
 @interface NuPointer ()
-{
-    void *pointer;
-    NSString *typeString;
-    bool thePointerIsMine;
-}
 @end
 
 @implementation NuPointer
@@ -10320,10 +10240,6 @@ static NSUInteger nu_parse_escape_sequences(NSString *string, NSUInteger i, NSUI
 @end
 
 @interface NuProfiler ()
-{
-    NSMutableDictionary *sections;
-    NuProfileStackElement *stack;
-}
 @end
 
 @implementation NuProfiler
@@ -10401,9 +10317,6 @@ static NuProfiler *defaultProfiler = nil;
 #pragma mark - NuProperty.m
 
 @interface NuProperty ()
-{
-    objc_property_t p;
-}
 @end
 
 @implementation NuProperty
@@ -10430,10 +10343,6 @@ static NuProfiler *defaultProfiler = nil;
 #pragma mark - NuReference.m
 
 @interface NuReference ()
-{
-    id *pointer;
-    bool thePointerIsMine;
-}
 @end
 
 @implementation NuReference
@@ -10648,9 +10557,6 @@ static NuProfiler *defaultProfiler = nil;
 #pragma mark - NuStack.m
 
 @interface NuStack ()
-{
-    NSMutableArray *storage;
-}
 @end
 
 @implementation NuStack
@@ -10712,10 +10618,6 @@ static NuProfiler *defaultProfiler = nil;
 
 #pragma mark - NuSuper.m
 @interface NuSuper ()
-{
-    id object;
-    Class class;
-}
 @end
 
 @implementation NuSuper
@@ -10845,20 +10747,9 @@ static void nu_swizzleContainerClasses()
 #pragma mark - NuSymbol.m
 
 @interface NuSymbol ()
-{
-    NuSymbolTable *table;
-    id value;
-@public                                       // only for use by the symbol table
-    bool isLabel;
-    bool isGensym;                                // in macro evaluation, symbol is replaced with an automatically-generated unique symbol.
-    NSString *stringValue;			  // let's keep this for efficiency
-}
 @end
 
 @interface NuSymbolTable ()
-{
-    NSMutableDictionary *symbol_table;
-}
 @end
 
 void load_builtins(NuSymbolTable *);

@@ -89,7 +89,6 @@
 		22B3B41513B033EE00B3AB31 /* template.nu in Resources */ = {isa = PBXBuildFile; fileRef = 22B3B3F413B033EE00B3AB31 /* template.nu */; };
 		22B3B41613B033EE00B3AB31 /* test.nu in Resources */ = {isa = PBXBuildFile; fileRef = 22B3B3F513B033EE00B3AB31 /* test.nu */; };
 		22B3B41713B033EE00B3AB31 /* test.nu in Resources */ = {isa = PBXBuildFile; fileRef = 22B3B3F513B033EE00B3AB31 /* test.nu */; };
-		22B3B47313B0359300B3AB31 /* Nu.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B3B41D13B0359300B3AB31 /* Nu.m */; };
 		22B3B47413B0359300B3AB31 /* Nu.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B3B41D13B0359300B3AB31 /* Nu.m */; };
 		22B3B50313B0386600B3AB31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3B50213B0386600B3AB31 /* UIKit.framework */; };
 		22B3B50513B0388C00B3AB31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3B50413B0388C00B3AB31 /* Foundation.framework */; };
@@ -99,6 +98,8 @@
 		22EE2C0613A4731600895861 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EE2C0513A4731600895861 /* main.m */; };
 		22EE2C0A13A4731600895861 /* NuAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22EE2C0913A4731600895861 /* NuAppDelegate.m */; };
 		4F43427C1420476C00AC1BFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F43427B1420476C00AC1BFD /* main.m */; };
+		7B28C15C1713A1FB0068774A /* Nu.h in Headers */ = {isa = PBXBuildFile; fileRef = 229FABE113C0129400CEFCF5 /* Nu.h */; settings = {ATTRIBUTES = (); }; };
+		7B28C15D1713A8880068774A /* Nu.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B3B41D13B0359300B3AB31 /* Nu.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -435,6 +436,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B28C15C1713A1FB0068774A /* Nu.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22B3B47313B0359300B3AB31 /* Nu.m in Sources */,
+				7B28C15D1713A8880068774A /* Nu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +689,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -704,9 +707,11 @@
 				GCC_PREFIX_HEADER = Nu_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				INSTALL_PATH = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = Nu;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -715,6 +720,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -730,9 +736,11 @@
 				GCC_PREFIX_HEADER = Nu_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				INSTALL_PATH = "@loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = Nu;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
