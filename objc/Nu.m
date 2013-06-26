@@ -4206,6 +4206,11 @@ static NSComparisonResult sortedArrayUsingBlockHelper(id a, id b, void *context)
     [self replaceObjectAtIndex:index withObject:((anObject == nil) ? (id)[NSNull null] : anObject)];
 }
 
+- (void) sortUsingBlock:(NuBlock *) block
+{
+    [self sortUsingFunction:sortedArrayUsingBlockHelper context:block];
+}
+
 @end
 
 @implementation NSSet(Nu)
@@ -9000,6 +9005,8 @@ void load_builtins(NuSymbolTable *symbolTable)
     install(@"regex",    Nu_regex_operator);
     
     install(@"function", Nu_function_operator);
+    install(@"def",      Nu_function_operator);
+
     install(@"progn",    Nu_progn_operator);
     install(@"then",     Nu_progn_operator);
     install(@"else",     Nu_progn_operator);
@@ -10432,8 +10439,8 @@ static NuProfiler *defaultProfiler = nil;
 - (NSString *)groupAtIndex:(int)i {
     NSRange range = [self rangeAtIndex:i];
     NSString *string = [self associatedObjectForKey:@"string"];
-    if (string) {
-        return [string substringWithRange:range];
+    if (string && (range.location != NSNotFound)) {
+ 	return [string substringWithRange:range];
     } else {
         return nil;
     }
